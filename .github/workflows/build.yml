@@ -24,6 +24,8 @@ jobs:
       - run: git submodule update --init
       - run: npm run build
       - run: npm run test-ci
+      - if: ${{ matrix.node-version != '10.x' }}
+        run: npm run test-spec-esm
       - name: coveralls
         uses: coverallsapp/github-action@master
         with:
